@@ -1,6 +1,6 @@
 package apiTestScripts;
 
-
+import org.testng.Assert;
 
 import io.restassured.path.json.JsonPath;
 import resources.TestBuildData;
@@ -34,12 +34,10 @@ public class testScript extends TestBuildData {
 		System.out.println("Total number of foreign players: " + noOfForeignPlayers);
 
 		// Validatig the output
-		if (noOfForeignPlayers == 4) {
-			System.out.println("The team has only 4 foreign players");
-		} else {
-			System.out.println("The team don't have 4 foreign players");
-		}
-
+		Assert.assertEquals(noOfForeignPlayers, 4);
+		System.out.println("The team has only 4 foreign players");
+		
+		
 		// 2. Write a test that validates that there is atleast one wicket keeper
 
 		int noOfWicketKeepers = 0;
@@ -54,12 +52,8 @@ public class testScript extends TestBuildData {
 		System.out.println("Total number of wicket keeper players: " + noOfWicketKeepers);
 
 		// Validatig the output
-		if (noOfWicketKeepers >= 1) {
-			System.out.println("The team has atleast one wicket-keeper");
-		} else {
-			System.out.println("The team don't a wicket-keeper");
-		}
-
+		Assert.assertEquals(noOfWicketKeepers, 1);
+		System.out.println("The team has atleast one wicket-keeper");
 	}
 
 }
