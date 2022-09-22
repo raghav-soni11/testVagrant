@@ -1,12 +1,13 @@
 package apiTestScripts;
 
+
+
 import io.restassured.path.json.JsonPath;
 import resources.TestBuildData;
 
 public class testScript extends TestBuildData {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		// Displaying the json payload
 		System.out.println(testData());
@@ -31,16 +32,33 @@ public class testScript extends TestBuildData {
 			}
 		}
 		System.out.println("Total number of foreign players: " + noOfForeignPlayers);
-		
-		//Validatig the output
-		if(noOfForeignPlayers == 4) {
+
+		// Validatig the output
+		if (noOfForeignPlayers == 4) {
 			System.out.println("The team has only 4 foreign players");
-		}
-		else {
+		} else {
 			System.out.println("The team don't have 4 foreign players");
 		}
-		
-		
+
+		// 2. Write a test that validates that there is atleast one wicket keeper
+
+		int noOfWicketKeepers = 0;
+
+		for (int j = 0; j < noOfPlayers; j++) {
+			String playerCountry = js.getString("player[" + j + "].role");
+
+			if (playerCountry.equalsIgnoreCase("Wicket-keeper")) {
+				noOfWicketKeepers += 1;
+			}
+		}
+		System.out.println("Total number of wicket keeper players: " + noOfWicketKeepers);
+
+		// Validatig the output
+		if (noOfWicketKeepers >= 1) {
+			System.out.println("The team has atleast one wicket-keeper");
+		} else {
+			System.out.println("The team don't a wicket-keeper");
+		}
 
 	}
 
